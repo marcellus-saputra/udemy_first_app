@@ -14,43 +14,44 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  var _score = 0;
   var _questionIndex = 0;
   var _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
       'answer': [
-        'Black',
-        'Red',
-        'Green',
-        'White',
+        {'text': 'Black', 'score': 0},
+        {'text': 'Red', 'score': 1},
+        {'text': 'Green', 'score': 2},
+        {'text': 'White', 'score': 3},
       ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
       'answer': [
-        'Cat',
-        'Dog',
-        'Cow',
-        'Bird',
+        {'text': 'Cat', 'score': 0},
+        {'text': 'Dog', 'score': 1},
+        {'text': 'Cow', 'score': 2},
+        {'text': 'Bird', 'score': 3},
       ],
     },
     {
       'questionText': 'What\'s your favorite shape?',
       'answer': [
-        'Square',
-        'Circle',
-        'Triangle',
+        {'text': 'Square', 'score': 0},
+        {'text': 'Circle', 'score': 1},
+        {'text': 'Triangle', 'score': 2},
       ],
     },
   ];
 
   @override
   Widget build(BuildContext context) {
-    void _answerQuestion() {
+    void _answerQuestion(int score) {
+      _score += score;
       setState(() {
         _questionIndex = _questionIndex + 1;
       });
-      print(_questionIndex);
     }
 
     return MaterialApp(
@@ -62,7 +63,7 @@ class _MyAppState extends State<MyApp> {
                 questions: _questions,
                 questionIndex: _questionIndex,
               )
-            : Result(),
+            : Result(_score),
       ),
     );
   }
