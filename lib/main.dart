@@ -54,6 +54,13 @@ class _MyAppState extends State<MyApp> {
       });
     }
 
+    void _resetQuiz() {
+      _score = 0;
+      setState(() {
+        _questionIndex = 0;
+      });
+    }
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('My First App')),
@@ -63,7 +70,7 @@ class _MyAppState extends State<MyApp> {
                 questions: _questions,
                 questionIndex: _questionIndex,
               )
-            : Result(_score),
+            : Result(_score, _resetQuiz),
       ),
     );
   }
